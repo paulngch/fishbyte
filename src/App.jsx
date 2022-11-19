@@ -5,6 +5,7 @@ import ApiTest from "./components/ApiTest";
 
 function App() {
   const [count, setCount] = useState(0);
+  // const [wForecast2, setWForecast2] = useState("");
 
   return (
     <div className="App">
