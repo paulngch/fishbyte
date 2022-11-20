@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-export default function ApiTest() {
+export default function ApiTest({ solunar, setSolunar, openMeteo , setOpenMeteo }) {
   const [wForecast2, setWForecast2] = useState("");
   const [wForecast24, setWForecast24] = useState("");
   const [wForecast4, setWForecast4] = useState("");
-  const [solunar, setSolunar] = useState("");
+  // const [solunar, setSolunar] = useState("");
 
   const queryUrl2Hour =
     "https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=2022-11-19T23%3A09%3A00";
@@ -57,6 +57,18 @@ export default function ApiTest() {
     fetchSolunar();
   }, []);
 
+  const openMeteoUrl =
+    "https://api.open-meteo.com/v1/forecast?latitude=1.37&longitude=103.80&hourly=temperature_2m&daily=sunrise,sunset&timezone=Asia%2FSingapore&start_date=2022-11-20&end_date=2022-11-20";
+
+  useEffect(() => {
+    const fetchOpenMeteo = async () => {
+      const response = await fetch(openMeteoUrl);
+      const data = await response.json();
+      setOpenMeteo(data);
+    };
+    fetchOpenMeteo();
+  }, []);
+
   const tempArea = wForecast2;
   const tempArea24 = wForecast24;
   const tempArea4 = wForecast4;
@@ -65,7 +77,9 @@ export default function ApiTest() {
   return (
     <div>
       test 2hour={tempArea} 24hour={tempArea24} 4days={tempArea4} SOLUNAR ={" "}
-      {solunar}
+      {solunar} <br />
+      openmeteo sunrise={openMeteo.latitude}
+      openmetao sunset={openMeteo.daily.sunrise[0]}
     </div>
   );
 }

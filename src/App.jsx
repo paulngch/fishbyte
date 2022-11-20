@@ -5,7 +5,10 @@ import ApiTest from "./components/ApiTest";
 
 function App() {
   const [count, setCount] = useState(0);
-  // const [wForecast2, setWForecast2] = useState("");
+const [solunar, setSolunar] = useState("");
+
+const [openMeteo,setOpenMeteo] = useState("")
+
 
   return (
     <div className="App">
@@ -25,7 +28,7 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-        <ApiTest />
+        <ApiTest solunar={solunar} setSolunar={setSolunar} setOpenMeteo={setOpenMeteo} openMeteo={openMeteo}/>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
