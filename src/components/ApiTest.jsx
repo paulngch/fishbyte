@@ -73,13 +73,14 @@ export default function ApiTest({ solunar, setSolunar, openMeteo , setOpenMeteo 
   const tempArea24 = wForecast24;
   const tempArea4 = wForecast4;
   console.log(tempArea);
+  // console.log(openMeteo.daily)
 
   return (
     <div>
       test 2hour={tempArea} 24hour={tempArea24} 4days={tempArea4} SOLUNAR ={" "}
       {solunar} <br />
       openmeteo sunrise={openMeteo.latitude}
-      openmetao sunset={openMeteo.daily.sunrise[0]}
+      openmetao sunset={openMeteo && openMeteo.daily.sunrise[0]}
     </div>
   );
 }
